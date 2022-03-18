@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_golang_yt/colors/homescreen.dart';
+import 'package:flutter_golang_yt/screens/homescreen.dart';
 
 void main() {
   runApp(const MyApp());
