@@ -32,7 +32,7 @@ class AllTasks extends StatelessWidget {
       child: const Icon(
         Icons.delete,
         color: Colors.white,
-      ),
+      ),sss
       alignment: Alignment.centerRight,
     );
     return Scaffold(
@@ -44,7 +44,7 @@ class AllTasks extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: InkWell(
               onTap: (){
-                Get.back();
+                Get.back();s
               },
                 child: Icon(Icons.arrow_back, color: AppColors.secondaryColor,)),
 
