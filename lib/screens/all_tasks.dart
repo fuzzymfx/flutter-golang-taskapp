@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/colors/app_colors.dart';
-
+import 'package:flutter_golang_yt/screens/homescreen.dart';
+import 'package:flutter_golang_yt/widgets/button_widget.dart';
 import '../widgets/task_widget.dart';
+import 'package:get/get.dart';
 
 class AllTasks extends StatelessWidget {
   const  AllTasks({Key? key}) : super(key: key);
@@ -40,7 +42,11 @@ class AllTasks extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(left: 20, top: 50),
             alignment: Alignment.topLeft,
-            child: Icon(Icons.arrow_back, color: AppColors.secondaryColor,),
+            child: InkWell(
+              onTap: (){
+                Get.back();
+              },
+                child: Icon(Icons.arrow_back, color: AppColors.secondaryColor,)),
 
             width: double.maxFinite,
             height: MediaQuery.of(context).size.height/3.2,
@@ -91,10 +97,37 @@ class AllTasks extends StatelessWidget {
                 },
                 confirmDismiss: (DismissDirection direction)async{
                   if(direction ==DismissDirection.startToEnd){
+                    showModalBottomSheet(
+                      backgroundColor: Colors.transparent,
+                        barrierColor: Colors.transparent,
+                        context: context, builder: (_){
+                      return Container(
+                        height: 550,
+                        decoration:  BoxDecoration(
+                          color:  const Color(0xFF2e3253).withOpacity(0.3),
+                          borderRadius: BorderRadius.only(
+                            topRight:  Radius.circular(20),
+                            topLeft:  Radius.circular(20),
+
+                          )
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ButtonWidget(backgroundcolor: AppColors.mainColor, text: "View", textColor: Colors.white),
+                              const SizedBox(height: 15,),
+                              ButtonWidget(backgroundcolor: AppColors.mainColor, text: "Edit", textColor: Colors.white)
+                            ],
+                          ),
+                        )
+
+                      );
+                    });
                   return false;
                   }else{
-
-                    return true;
+                    return Future.delayed(const Duration(seconds: 1),()=>direction ==DismissDirection.endToStart );
                   }
                 },
                 key: ObjectKey(index),

@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/colors/app_colors.dart';
+import 'package:flutter_golang_yt/screens/add_task.dart';
 import 'package:flutter_golang_yt/widgets/button_widget.dart';
+import 'package:get/get.dart';
+import 'all_tasks.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -40,9 +43,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ))]
             )),
             SizedBox(height: MediaQuery.of(context).size.height/2.5,),
-            ButtonWidget(backgroundcolor: AppColors.mainColor, text: "Add Task", textColor: Colors.white),
+            InkWell(
+              onTap: (){
+                Get.to(()=>AddTask(), transition: Transition.fade, duration: const Duration(milliseconds: 500));
+              },
+                child: ButtonWidget(backgroundcolor: AppColors.mainColor, text: "Add Task", textColor: Colors.white)),
             const SizedBox(height: 18,),
-            ButtonWidget(backgroundcolor: Colors.white, text: "View All", textColor: AppColors.mainColor)
+            InkWell(
+              onTap: (){
+                Get.to(()=>const AllTasks(), transition: Transition.fade, duration: const Duration(milliseconds: 500));
+              },
+                child: ButtonWidget(backgroundcolor: Colors.white, text: "View All", textColor: AppColors.mainColor))
             
           ],
         ),
